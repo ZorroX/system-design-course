@@ -1,0 +1,184 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+:root,
+[data-theme='dark'] {
+  --bg: #0b1020;
+  --bg-2: #0f1630;
+  --surface: #141c38;
+  --surface-2: #1b2547;
+  --border: #26315a;
+  --text: #e6eaf5;
+  --muted: #8f9bbd;
+  --accent: #22d3ee;
+  --violet: #a78bfa;
+  --good: #34d399;
+  --warn: #fbbf24;
+  --bad: #f87171;
+  --pink: #f472b6;
+  --grid: rgba(143, 155, 189, 0.08);
+  color-scheme: dark;
+}
+
+[data-theme='light'] {
+  --bg: #f4f6fb;
+  --bg-2: #eaeef8;
+  --surface: #ffffff;
+  --surface-2: #f0f3fa;
+  --border: #d6dcec;
+  --text: #121a33;
+  --muted: #5b6684;
+  --accent: #0891b2;
+  --violet: #7c3aed;
+  --good: #059669;
+  --warn: #d97706;
+  --bad: #dc2626;
+  --pink: #db2777;
+  --grid: rgba(18, 26, 51, 0.06);
+  color-scheme: light;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-2: var(--bg-2);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-violet: var(--violet);
+  --color-good: var(--good);
+  --color-warn: var(--warn);
+  --color-bad: var(--bad);
+  --color-pink: var(--pink);
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.bg-grid {
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 0.75rem;
+  padding: 0.55rem 1rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: transform 0.12s ease, background 0.2s ease, opacity 0.2s;
+  cursor: pointer;
+  user-select: none;
+}
+.btn:active {
+  transform: scale(0.97);
+}
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.btn-primary {
+  background: var(--accent);
+  color: #04131a;
+}
+.btn-primary:hover {
+  filter: brightness(1.08);
+}
+.btn-ghost {
+  background: var(--surface-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-ghost:hover {
+  border-color: var(--accent);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border-radius: 999px;
+  padding: 0.15rem 0.6rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--muted);
+}
+
+.prose-sd p {
+  line-height: 1.7;
+  margin: 0.6rem 0;
+}
+.prose-sd code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 0.35rem;
+  padding: 0.05rem 0.35rem;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  scrollbar-width: none;
+}
+
+input[type='range'] {
+  accent-color: var(--accent);
+}
+
+/* React Flow theming */
+.react-flow {
+  --xy-background-color: transparent;
+  --xy-edge-stroke: var(--muted);
+  --xy-controls-button-background-color: var(--surface-2);
+  --xy-controls-button-color: var(--text);
+  --xy-controls-button-border-color: var(--border);
+  --xy-handle-background-color: var(--accent);
+  --xy-handle-border-color: var(--bg);
+}
+.react-flow__attribution {
+  background: transparent !important;
+  opacity: 0.6;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+.flow-dash {
+  stroke-dasharray: 6 6;
+  animation: dash 0.8s linear infinite;
+}
